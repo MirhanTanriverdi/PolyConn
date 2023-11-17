@@ -6,12 +6,22 @@
     <title>Document</title>
 </head>
 <body>
-    <!-- list_districts.html -->
-    <ul>
-    {% for district in districts %}
-        <li>{{ district.name }}</li>
-    {% endfor %}
-    </ul>
-    
+
+    <head>
+        <title>District List</title>
+    </head>
+    <h2>District List</h2>
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+        </tr>
+        {% for district in districts %}
+        <tr>
+            <td>{{ district.id }}</td>
+            <td>{{ district.name }}</td>
+        </tr>
+        {% endfor %}
+
 </body>
 </html>

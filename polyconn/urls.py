@@ -16,12 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from polyconnmain.views import list_districts, home
+from polyconnmain.views import District, home, list_district, list_user, list_cafe, list_reservation
 
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('districts/', list_districts, name='list_districts'),
+    path('districts/', list_district, name='list_district'),
     path('', home, name='home'),
+    path('user/', list_user, name='list_user'),
+    path('cafe/', list_cafe, name='list_cafes'),
+    path('reservation/', list_reservation, name='list_reservation')
 ]
 

@@ -2,12 +2,12 @@ from django.db import models
 
 # Create your models here.
 
-# District Model
+# district_id_id Model
 class District(models.Model):
     name = models.CharField(max_length=70, unique=True)
 
     def __str__(self):
-        return self.username
+        return self.name
 
 # User Model
 class User(models.Model):
@@ -19,9 +19,9 @@ class User(models.Model):
     gender = models.CharField(max_length=50, null=True, blank=True)
     nationality = models.CharField(max_length=255, null=True, blank=True)
     german_proficiency_level = models.CharField(max_length=255, null=True, blank=True)
-    native_languages = models.JSONField()
-    learning_languages = models.JSONField()
-    hobbies = models.JSONField()
+    native_language = models.CharField(max_length=255, null=True, blank=True)
+    learning_languages = models.CharField(max_length=255, null=True, blank=True)
+    hobbies = models.CharField(max_length=255, null=True, blank=True)
 
     def __str__(self):
         return self.username
@@ -39,23 +39,31 @@ class Cafe(models.Model):
 
 # Reservation Model
 class Reservation(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    cafe = models.ForeignKey(Cafe, on_delete=models.CASCADE)
     reservation_date = models.DateTimeField()
-    participants = models.JSONField()  # Storing an array of user IDs
+    cafe = models.ForeignKey(Cafe, on_delete=models.CASCADE)
 
-    def __str__(self):
-        return f"Reservation by {self.user.username} on {self.reservation_date}"
+# Reservation Participants Model
+class Reservation_Participants(models.Model):
+    reservation = models.ForeignKey(Reservation, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    class Meta:
+        unique_together = ('reservation', 'user')
 
-# Events Model
+# Event Model
 class Event(models.Model):
-    name = models.CharField(max_length=255)
-    event_type = models.CharField(max_length=255, blank=True, null=True)
-    district = models.ForeignKey(District, on_delete=models.CASCADE)
+    event_name = models.CharField(max_length=255)
+    event_type = models.CharField(max_length=255)
     date = models.DateTimeField()
-    participants = models.JSONField()
+    district = models.ForeignKey(District, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name
+        return self.event_name
 
+# User Event Model
+class UserEvent(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ('user', 'event')

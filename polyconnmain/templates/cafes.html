@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- list_districts.html -->
+    <head>
+        <title>Cafe List</title>
+    </head>
+    <h2>Cafe List</h2>
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>district</th>
+            <th>address</th>
+            <th>suitable_for_events</th>
+
+        </tr>
+        {% for cafe in cafes %}
+        <tr>
+            <td>{{ cafe.name }}</td>
+            <td>{{ cafe.district.name }}</td>
+            <td>{{ cafe.address }}</td>
+            <td>{{ cafe.suitable_for_events }}</td>
+        </tr>
+        {% endfor %}
+</body>
+</html>

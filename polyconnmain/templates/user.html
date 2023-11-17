@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- list_districts.html -->
+    <!-- <ul>
+    {% for user in users %}
+        <li>{{ user.username }}</li>
+    {% endfor %}
+    </ul> -->
+    <head>
+        <title>User List</title>
+    </head>
+    <body>
+        <h2>User List</h2>
+        <table border="1">
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>District</th>
+                <th>age</th>
+                <th>nationality</th>
+                <th>german_proficiency_level</th>
+                <th>native_language</th>
+                <th>learning_languages</th>
+                <th>hobbies</th>
+            </tr>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.district.name }}</td>
+                <td>{{ user.age }}</td>
+                <td>{{ user.nationality }}</td>
+                <td>{{ user.german_proficiency_level }}</td>
+                <td>{{ user.native_language }}</td>
+                <td>{{ user.learning_languages }}</td>
+                <td>{{ user.hobbies }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    
+</body>
+</html>

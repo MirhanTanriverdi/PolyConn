@@ -74,12 +74,24 @@ WSGI_APPLICATION = "polyconn.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
+
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',  # This should match the name of the database you're using
+        'USER': 'postgres',  # This should match your PostgreSQL user, often 'postgres' by default for local setups
+        'PASSWORD': '',  # No password is set in this case
+        'HOST': 'localhost',  # Assuming your database is running locally
+        'PORT': '5432',  # The default port for PostgreSQL
     }
 }
+
 
 
 # Password validation
